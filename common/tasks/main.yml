@@ -1,0 +1,11 @@
+- name: Install Pip
+  apt: name=python-pip state=installed
+- name: Install docker-python library
+  pip: name=docker-py state=latest
+- name: Set LocalDocker fact
+  set_fact:
+    local_docker: true
+- name: create appnet Network
+  docker_network:
+    name: appnet
+  when: local_docker=="true"

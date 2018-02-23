@@ -1,0 +1,48 @@
+- name: Copy Jenkins Dockefile to remote
+  template:
+    src: Dockerfile.j2
+    dest: "{{ JENKINS_HOME }}/Dockerfile"
+
+- name: Build Jenkins image from Dockerfile
+  docker_image:
+    name: "{{ image_name }}"
+    tag: "{{ image_tag }}"
+    path: "{{ JENKINS_HOME }}"
+    state: build
+    pull: no
+  become: yes
+  become_method: sudo
+
+
+- name: Create JENKINS HOME DIR
+  file:
+    path: "{{ JENKINS_HOME }}/{{ JENKINS_DIRNAME  }}"
+    state: directory
+#    owner: 1000
+#    group: 1000
+#    mode: 0755
+
+- name: Create Settings.xml file
+  template:
+    src: settings.xml.j2
+    dest: '{{ settings_file }}'
+
+- name: Set permissions on bind mounts dir
+  command: "chown -R 1000:1000 {{ JENKINS_HOME }}/{{ JENKINS_DIRNAME  }}"
+  become: yes
+  become_method: sudo
+
+- name: Run Jenkins Container
+  docker_container:
+    name: jenkins
+    image: "{{ image_name }}:{{ image_tag }}"
+    volumes:
+      - "{{ JENKINS_HOME }}/{{ JENKINS_DIRNAME }}:/var/jenkins_home"
+      - "{{ settings_file }}:/etc/maven/settings.xml"
+    ports:
+      - "{{ JENKINS_PORT }}:8080"
+      - "{{ JENKINS_AGENT_PORT }}:50000"
+    networks:
+      - name: appnet
+
+

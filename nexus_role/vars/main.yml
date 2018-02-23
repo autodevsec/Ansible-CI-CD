@@ -1,0 +1,3 @@
+NEXUS_PORT: 8081
+NEXUS_HOSTNAME: nexus
+NEXUS_DATA: /home/ansible/jenkins/nexus_data

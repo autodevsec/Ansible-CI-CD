@@ -1,0 +1,14 @@
+--- # DEV MODE
+- hosts: local
+  remote_user: ansible
+  connection: ssh
+  gather_facts: no
+
+  roles:
+    - { role: common, tags: ["common"] }
+    - { role: jenkins_role, tags: ["jenkins"] }
+    - { role: postgres_role, tags: ["postgres"] }
+    - { role: nexus_role, tags: ["nexus"] }
+    - { role: sonar_role, tags: ["sonar"] }
+
+

@@ -1,0 +1,15 @@
+BASE_IMAGE: jenkins:latest
+MAINTAINER: ayoubensalem
+image_name: ayoubensalem/jenkins
+image_tag: v1
+settings_file: /home/ansible/jenkins/settings.xml
+JENKINS_HOME: /home/ansible/jenkins
+JENKINS_DIRNAME: jenkins_home
+JENKINS_PORT: 8000
+JENKINS_AGENT_PORT: 50000
+NEXUS_RELEASES: nexus-releases
+NEXUS_SNAPSHOTS: nexus-snapshots
+NEXUS_USERNAME: admin
+NEXUS_PASSWORD: admin123
+SONAR_HOSTNAME: sonar
+SONAR_PORT: 9000
