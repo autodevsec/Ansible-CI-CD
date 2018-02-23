@@ -1,6 +1,6 @@
 - name: Run Sonar Container
   docker_container:
-    name: sonar
+    name: '{{ SONAR_CONTAINER_NAME }}'
     image: sonarqube
     env:
       SONARQUBE_JDBC_USERNAME: "{{ SONARQUBE_JDBC_USERNAME }}"
