@@ -18,8 +18,8 @@
   file:
     path: "{{ JENKINS_HOME }}/{{ JENKINS_DIRNAME  }}"
     state: directory
-#    owner: 1000
-#    group: 1000
+    owner: 1000
+    group: 1000
 #    mode: 0755
 
 - name: Create Settings.xml file
