@@ -2,6 +2,18 @@
   apt: name=python-pip state=installed
 - name: Install docker-python library
   pip: name=docker-py state=latest
+- name:
+  user:
+    name: ansible
+    shell: /bin/bash
+    group: ansible
+    uid: 1001
+
+- name: Create JEKNINS  home
+  file:
+    path: /home/ansible/jenkins
+    state: directory
+
 - name: Set LocalDocker fact
   set_fact:
     local_docker: true
