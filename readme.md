@@ -12,7 +12,7 @@ A set of ansible roles for CI/CD environment :
 
  - ansible user on each node.
  - ssh established with sudo permission to ansbile user.
- - :warning: *I don't remember right now.*
+ - :warning: *Thinking ...*
 
 ## How to run
 
